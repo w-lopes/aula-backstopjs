@@ -1,0 +1,86 @@
+{
+  "id": "ticket_box",
+  "viewports": [
+    {
+      "label": "tablet",
+      "width": 1024,
+      "height": 768
+    }
+  ],
+  "onBeforeScript": "puppet/onBefore.js",
+  "onReadyScript": "puppet/onReady.js",
+  "scenarios": [
+    {
+      "label": "Initial state",
+      "url": "https://ticketbox-backstopjs-tat.s3.eu-central-1.amazonaws.com/index.html",
+      "misMatchThreshold": 0,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Check VIP",
+      "url": "https://ticketbox-backstopjs-tat.s3.eu-central-1.amazonaws.com/index.html",
+      "misMatchThreshold": 0,
+      "requireSameDimensions": true,
+      "clickSelector": "#vip"
+    },
+    {
+      "label": "Checkboxes",
+      "url": "https://ticketbox-backstopjs-tat.s3.eu-central-1.amazonaws.com/index.html",
+      "misMatchThreshold": 0,
+      "requireSameDimensions": true,
+      "clickSelectors": [
+        "#friend",
+        "#publication",
+        "#social-media"
+      ]
+    },
+    {
+      "label": "Select 3 tickets",
+      "url": "https://ticketbox-backstopjs-tat.s3.eu-central-1.amazonaws.com/index.html",
+      "misMatchThreshold": 0,
+      "requireSameDimensions": true,
+      "onReadyScript": "puppet/custom/selectTickets.js"
+    },
+    {
+      "label": "Invalid email",
+      "url": "https://ticketbox-backstopjs-tat.s3.eu-central-1.amazonaws.com/index.html",
+      "misMatchThreshold": 0,
+      "requireSameDimensions": true,
+      "onReadyScript": "puppet/custom/typeInvalidEmail.js"
+    },
+    {
+      "label": "Valid email",
+      "url": "https://ticketbox-backstopjs-tat.s3.eu-central-1.amazonaws.com/index.html",
+      "misMatchThreshold": 0,
+      "requireSameDimensions": true,
+      "onReadyScript": "puppet/custom/typeValidEmail.js"
+    },
+    {
+      "label": "Fill all mandatory fields",
+      "url": "https://ticketbox-backstopjs-tat.s3.eu-central-1.amazonaws.com/index.html",
+      "misMatchThreshold": 0,
+      "requireSameDimensions": true,
+      "onReadyScript": "puppet/custom/fillAllMandatoryFields.js"
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report",
+    "ci_report": "backstop_data/ci_report"
+  },
+  "report": [
+    "browser"
+  ],
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": [
+      "--no-sandbox"
+    ]
+  },
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+}
